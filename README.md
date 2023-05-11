@@ -31,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![OwO Bot Screen Shot][product-screenshot]]
+![OwO Bot Screen Shot][product-screenshot]
 
 ⚠️ **This tool is made for educational purposes only, I'm not responseable for any harm that was caused by using this tool. You are using it at your own risk!** ⚠️
 
