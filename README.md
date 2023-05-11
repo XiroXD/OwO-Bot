@@ -11,9 +11,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/XiroXD/OwO-Bot">
-    <img src="images/logo.png" alt="Logo" width="100" height="80">
-  </a>
 
 <h3 align="center">OwO Bot</h3>
 
