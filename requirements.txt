@@ -1,0 +1,4 @@
+colorama==0.4.6
+discord.py-self==2.0.0
+Requests==2.30.0
+win11toast==0.32
