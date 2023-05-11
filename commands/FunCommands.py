@@ -1,4 +1,3 @@
-import requests
 import discord
 import random
 import json

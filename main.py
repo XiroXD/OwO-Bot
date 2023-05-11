@@ -1,5 +1,4 @@
 import colorama
-import requests
 import asyncio
 import json
 import os
@@ -8,7 +7,6 @@ from colorama import Fore, Back
 from discord.ext import commands
 from win11toast import notify
 from utils import Message
-from io import BytesIO
 from utils import Log
 
 
