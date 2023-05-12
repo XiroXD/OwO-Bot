@@ -39,12 +39,26 @@ async def on_ready():
     global lost_connection
     lost_connection = False
     notify('Selfbot', 'Successfully connected to Discord gateway', app_id="OwO Bot")
+    
     count = 0
     for command in OwO.commands:
         count += 1
     Log.info(f'Loaded {count} commands')
+    
     Log.custom_info('[Selfbot]', 'Successfully connected to Discord gateway')
     Log.custom_info('[Selfbot]', f'Logged in as {OwO.user}')
+    
+    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
+    r = requests.get(url).content
+    parsed = json.loads(r)
+    if not os.path.exists("./data/version.json"):
+        Api.get_version()
+    else:
+        with open("./data/version.json") as f:
+            version = json.load(f)
+            if version['version'] != parsed['version']:
+                notify('Selfbot', f'New version available: {parsed["version"]}',  app_id="OwO Bot")
+                Log.warn(f'New version available: {parsed["version"]}')
 
 
 @OwO.event
@@ -80,18 +94,6 @@ async def on_command_error(ctx, error):
 
 
 async def load():
-    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
-    r = requests.get(url).content
-    parsed = json.loads(r)
-    if not os.path.exists("./data/version.json"):
-        Api.get_version()
-    else:
-        with open("./data/version.json") as f:
-            version = json.load(f)
-            if version['version'] != parsed['version']:
-                notify('Selfbot', f'New version available: {parsed["version"]}',  app_id="OwO Bot")
-                Log.warn(f'New version available: {parsed["version"]}')
-
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
             await OwO.load_extension(f'commands.{filename[:-3]}')
