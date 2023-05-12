@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 
 def nekobot_imagegen_api(endpoint: str, args: str):
@@ -19,3 +20,11 @@ def some_random_api(category: str, endpoint: str, args: str = None, image: bool 
     else:
         parsed = json.loads(r)
         return parsed[field]
+
+def get_version():
+    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
+    r = requests.get(url).content
+    if not os.path.exists("./data/version.json"):
+        os.mkdir("./data")
+        open("./data/version.json", "wb").write(r)
+    return r

@@ -1,14 +1,28 @@
+import utils.Log as Log
 import random
 import json
+import time
 
 from typing import Sequence
+from utils import Api
+while True:
+    try:
+        with open("config/config.json") as f:
+            config = json.load(f)
+            owofied = config["owofied"]
+            prefix = config["prefix"]
 
-with open('config/config.json') as f:
-    config = json.load(f)
-    owofied = config['owofied']
-    prefix = config['prefix']
-
-version = "0.0.4-preview"
+        with open("data/version.json") as f:
+            config = json.load(f)
+            version = config["version"]
+            build = config["build"]
+        break
+    except FileNotFoundError:
+        Api.get_version()
+        time.sleep(1)
+    except Exception as e:
+        Log.error(e)
+        break
 
 
 def codeblock(title: str, text: str):
@@ -26,7 +40,7 @@ def codeblock(title: str, text: str):
 {text}
 ```
 ```
-OwO Bot - Made by Xiro#0001 | Prefix: {prefix}
+OwO Bot - Made by Xiro#0001 | Prefix: {prefix} | Build: {build}
 ```
 """
 
@@ -48,7 +62,7 @@ def paginated_codeblock(title: str, text: str, page: int, num_pages: int):
 [{title} (page {page}/{num_pages})]
 ```
 ```
-OwO Bot - Made by Xiro#0001 | Prefix: {prefix}
+OwO Bot - Made by Xiro#0001 | Prefix: {prefix} | Build: {build}
 ```
 """
 
@@ -85,7 +99,6 @@ def owofy(text: Sequence, *, wanky: bool = False, _print: bool = False):
         return new.join(li)
 
     def text_to_owo(textstr):
-
         exclamations = ("?", "!", ".", "*")
 
         prefixes = [

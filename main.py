@@ -80,6 +80,18 @@ async def on_command_error(ctx, error):
 
 
 async def load():
+    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
+    r = requests.get(url).content
+    parsed = json.loads(r)
+    if not os.path.exists("./data/version.json"):
+        Api.get_version()
+    else:
+        with open("./data/version.json") as f:
+            version = json.load(f)
+            if version['version'] != parsed['version']:
+                notify('Selfbot', f'New version available: {json["version"]}',  app_id="OwO Bot")
+                Log.warn(f'New version available: {json["version"]}')
+
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
             await OwO.load_extension(f'commands.{filename[:-3]}')
