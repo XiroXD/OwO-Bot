@@ -4,10 +4,9 @@ import asyncio
 import json
 import os
 
-from utils import Message, Log, Api
+from utils import Message, Log, Api, Toast
 from discord.ext import commands
 from colorama import Fore, Back
-from win11toast import notify
 
 
 colorama.init(autoreset=True)
@@ -38,7 +37,7 @@ lost_connection = False
 async def on_ready():
     global lost_connection
     lost_connection = False
-    notify('Selfbot', 'Successfully connected to Discord gateway', app_id="OwO Bot")
+    Toast.send('Selfbot', 'Successfully connected to Discord gateway')
     
     count = 0
     for command in OwO.commands:
@@ -56,8 +55,9 @@ async def on_ready():
     else:
         with open("./data/version.json") as f:
             version = json.load(f)
-            if version['version'] != parsed['version']:
-                notify('Selfbot', f'New version available: {parsed["version"]}',  app_id="OwO Bot")
+            if version['version'] != parsed['version'] or version['build'] != parsed['build']:
+                Api.get_version()
+                Toast.send('Selfbot', f'New version available: {parsed["version"]}, {parsed["build"]}')
                 Log.warn(f'New version available: {parsed["version"]}')
 
 
@@ -66,7 +66,7 @@ async def on_disconnect():
     global lost_connection
     if not lost_connection:
         lost_connection = True
-        notify('Selfbot', 'Lost connection to Discord gateway', app_id="OwO Bot")
+        Toast.send('Selfbot', 'Lost connection to Discord gateway')
         Log.warn('Lost connection to Discord gateway')
 
 
@@ -74,7 +74,7 @@ async def on_disconnect():
 async def on_resumed():
     global lost_connection
     lost_connection = False
-    notify('Selfbot', 'Reconnected to Discord gateway', app_id="OwO Bot")
+    Toast.send('Selfbot', 'Reconnected to Discord gateway')
     Log.warn('Reconnected to Discord gateway')
 
 

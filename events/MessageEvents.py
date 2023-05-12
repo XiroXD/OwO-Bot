@@ -2,8 +2,7 @@ import discord
 import json
 
 from discord.ext import commands
-from win11toast import notify
-from utils import Log
+from utils import Log, Toast
 
 with open('config/config.json') as f:
     config = json.load(f)
@@ -26,7 +25,7 @@ Content: {message.content}
             """
 
             Log.custom_info("[Message Removed]", msg)
-            notify("Message Removed", msg, app_id="OwO Bot")
+            Toast.send("Message Removed", msg)
         else:
             return
 
@@ -41,7 +40,7 @@ Before: {before.content}
 After: {after.content}
             """
             Log.custom_info("[Message Edited]", msg)
-            notify("Message Edited", msg, app_id="OwO Bot")
+            Toast.send("Message Edited", msg)
         else:
             return
 
@@ -52,7 +51,7 @@ After: {after.content}
 {user} is typing...
             """
             Log.custom_info("[Typing]", msg)
-            notify("Typing", msg, app_id="OwO Bot")
+            Toast.send("Typing", msg)
 
 
 async def setup(bot):
