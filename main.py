@@ -90,7 +90,7 @@ async def load():
             version = json.load(f)
             if version['version'] != parsed['version']:
                 notify('Selfbot', f'New version available: {parsed["version"]}',  app_id="OwO Bot")
-                Log.warn(f'New version available: {json["version"]}')
+                Log.warn(f'New version available: {parsed["version"]}')
 
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
