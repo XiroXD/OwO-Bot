@@ -42,7 +42,6 @@ Just another discord selfbot (Account automation tool), nothing special..
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ### Built With
 
 [![Python][Python]][Python-url]
@@ -65,9 +64,9 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/XiroXD/OwO-Bot.git
    ```
-3. Install Python packages
+3. Run installer
    ```sh
-   pip -r requirements.txt
+   py installer.py
    ```
 4. Put your discord token in `config/config.json`
 5. Run the selfbot
