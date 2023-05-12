@@ -1,13 +1,13 @@
 import colorama
+import requests
 import asyncio
 import json
 import os
 
-from colorama import Fore, Back
+from utils import Message, Log, Api
 from discord.ext import commands
+from colorama import Fore, Back
 from win11toast import notify
-from utils import Message
-from utils import Log
 
 
 colorama.init(autoreset=True)
