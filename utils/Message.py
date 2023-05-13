@@ -1,10 +1,10 @@
-import utils.Log as Log
 import random
 import json
 import time
 
 from typing import Sequence
-from utils import Api
+from utils import Api, Log
+
 while True:
     try:
         with open("config/config.json") as f:
