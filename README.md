@@ -58,17 +58,14 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Use Python 3.9
+1. Download Python 3.8 or 3.9
 
-2. Clone the repo
-   ```sh
-   git clone https://github.com/XiroXD/OwO-Bot.git
-   ```
-3. Run installer
+2. Download the latest release from ([releases](https://github.com/XiroXD/OwO-Bot/releases))
+3. Extract the downloaded file
+4. Run installer
    ```sh
    py installer.py
    ```
-4. Put your discord token in `config/config.json`
 5. Run the selfbot
    ```sh
    py main.py
