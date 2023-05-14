@@ -3,7 +3,6 @@ import json
 
 from utils import Log, Toast, Webhook
 from discord.ext import commands
-from utils import Log, Toast
 
 with open('config/config.json') as f:
     config = json.load(f)
@@ -30,11 +29,11 @@ Content: {message.content}
         web = json.load(open('config/notifications/webhooks.json'))
         if web['dmlogger'] != "":
             Webhook.embed("dmlogger", msg)
-
-            Log.custom_info("[Message Removed]", msg)
+        toast = json.load(open('config/notifications/toasts.json'))
+        if toast['dmlogger']:
             Toast.send("Message Removed", msg)
-        else:
-            return
+
+        Log.custom_info("[Message Removed]", msg)
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
