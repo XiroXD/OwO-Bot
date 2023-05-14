@@ -18,7 +18,7 @@ try:
         TOKEN = config['token']
         PREFIX = config['prefix']
         DELETE_TIMER = config['deletetimer']
-except:
+except Exception:
     Log.error("Couldn't read config file")
     exit(1)
 
@@ -38,15 +38,13 @@ async def on_ready():
     global lost_connection
     lost_connection = False
     Toast.send('Selfbot', 'Successfully connected to Discord gateway')
-    
-    count = 0
-    for command in OwO.commands:
-        count += 1
+
+    count = sum(1 for _ in OwO.commands)
     Log.info(f'Loaded {count} commands')
-    
+
     Log.custom_info('[Selfbot]', 'Successfully connected to Discord gateway')
     Log.custom_info('[Selfbot]', f'Logged in as {OwO.user}')
-    
+
     url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
     r = requests.get(url).content
     parsed = json.loads(r)
