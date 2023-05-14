@@ -1,6 +1,7 @@
 import discord
 import json
 
+from utils import Log, Toast, Webhook
 from discord.ext import commands
 from utils import Log, Toast
 
@@ -8,7 +9,7 @@ with open('config/config.json') as f:
     config = json.load(f)
     PREFIX = config['prefix']
     DELETE_TIMER = config['deletetimer']
-
+    
 
 class MessageEvents(commands.Cog):
     def __init__(self, bot):
@@ -18,11 +19,17 @@ class MessageEvents(commands.Cog):
     async def on_message_delete(self, message):
         if message.author == self.bot.user:
             return
-        if isinstance(message.channel, discord.DMChannel):
-            msg = f"""
+
+        if not isinstance(message.channel, discord.DMChannel):
+            return
+
+        msg = f"""
 Author: {message.author}
 Content: {message.content}  
             """
+        web = json.load(open('config/notifications/webhooks.json'))
+        if web['dmlogger'] != "":
+            Webhook.embed("dmlogger", msg)
 
             Log.custom_info("[Message Removed]", msg)
             Toast.send("Message Removed", msg)
