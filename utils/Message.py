@@ -4,7 +4,6 @@ import time
 
 from typing import Sequence
 from utils import Api, Log
-
 while True:
     try:
         with open("config/config.json") as f:
@@ -30,7 +29,7 @@ def codeblock(title: str, text: str):
         title = owofy(title)
         text = owofy(text)
 
-    msg = f"""
+    return f"""
 ```ini
 [OwO Bot {version}]
 ```
@@ -44,15 +43,13 @@ OwO Bot - Made by Xiro#0001 | Prefix: {prefix} | Build: {build}
 ```
 """
 
-    return msg
-
 
 def paginated_codeblock(title: str, text: str, page: int, num_pages: int):
     if owofied:
         title = owofy(title)
         text = owofy(text)
 
-    msg = f"""
+    return f"""
 ```ini
 [OwO Bot {version}]
 ```
@@ -66,22 +63,20 @@ OwO Bot - Made by Xiro#0001 | Prefix: {prefix} | Build: {build}
 ```
 """
 
-    return msg
-
 
 def error(message: str):
-    msg = f"""
+    return f"""
 ```ini
 [OwO Bot]
 
 [Error] {message} 
 ```
     """
-    return msg
 
 
 # Source: https://github.com/Makiyu-py/humor_langs/blob/master/humor_langs/main_trans.py#LL6C1-L6C1
 def owofy(text: Sequence, *, wanky: bool = False, _print: bool = False):
+    # sourcery skip: swap-if-expression
     """translates your given text to owo!
 
     :param text: the string/array you want to translate to owo on
