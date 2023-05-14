@@ -33,7 +33,11 @@ for file_path, contents in files.items():
             os.makedirs(file_directory)
 
         file_path = os.path.join(file_directory, file_name)
-
+        
+        if os.path.exists(file_path):
+            print(f"File '{file_path}' already exists")
+            continue
+        
         with open(file_path, "w") as f:
             json.dump(contents, f, indent=4)
         print(f"Created file '{file_path}'")
