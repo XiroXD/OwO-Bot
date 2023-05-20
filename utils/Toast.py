@@ -1,4 +1,8 @@
-from win11toast import notify
+from notifypy import Notify
 
 def send(title, message):
-    notify(title, message, app_id="OwO Bot")
+    notification = Notify()
+    notification.title = title
+    notification.message = message
+    notification.application_name = "OwO Bot"
+    notification.send(block=False)
