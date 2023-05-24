@@ -1,5 +1,5 @@
 colorama==0.4.6
 discord.py-self==2.0.0
 discord_webhook==1.1.0
-notifypy==1.0.3.0
+notify-py==0.3.42
 Requests==2.30.0
