@@ -41,7 +41,7 @@ class Network(commands.Cog):
             page = 1
         start = (page - 1) * 10
         end = start + 10
-        output_text = Message.paginated_codeblock("Nsfw Commands", chr(10).join(cmds[start:end]), page, num_pages)
+        output_text = Message.paginated_codeblock("Network Commands", chr(10).join(cmds[start:end]), page, num_pages)
         await ctx.send(output_text, delete_after=DELETE_TIMER)
 
 
