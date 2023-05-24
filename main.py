@@ -10,7 +10,7 @@ from colorama import Fore, Back
 
 
 colorama.init(autoreset=True)
-os.system('cls')
+os.system('cls' if os.name == 'nt' else 'clear')
 
 try:
     with open('config/config.json') as f:
