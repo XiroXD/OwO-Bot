@@ -2,14 +2,13 @@ import discord
 import math
 import json
 
+from utils import Message, Api, Config
 from discord.ext import commands
-from utils import Message, Api
 from io import BytesIO
 
-with open('config/config.json') as f:
-    config = json.load(f)
-    PREFIX = config['prefix']
-    DELETE_TIMER = config['deletetimer']
+
+PREFIX = Config.get("prefix")
+DELETE_TIMER = Config.get("deletetimer")
 
 
 class Image(commands.Cog):

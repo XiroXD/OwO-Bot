@@ -4,7 +4,7 @@ import asyncio
 import json
 import os
 
-from utils import Message, Log, Api, Toast
+from utils import Message, Log, Api, Toast, Config
 from discord.ext import commands
 from colorama import Fore, Back
 
@@ -13,11 +13,9 @@ colorama.init(autoreset=True)
 os.system('cls' if os.name == 'nt' else 'clear')
 
 try:
-    with open('config/config.json') as f:
-        config = json.load(f)
-        TOKEN = config['token']
-        PREFIX = config['prefix']
-        DELETE_TIMER = config['deletetimer']
+    TOKEN = Config.get("token")
+    PREFIX = Config.get("prefix")
+    DELETE_TIMER = Config.get("deletetimer")
 except Exception:
     Log.error("Couldn't read config file")
     exit(1)

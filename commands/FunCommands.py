@@ -3,15 +3,13 @@ import random
 import json
 import math
 
+from utils import Message, Config
 from discord.ext import commands
-from utils import Message
 from io import BytesIO
 from utils import Api
 
-with open('config/config.json') as f:
-    config = json.load(f)
-    PREFIX = config['prefix']
-    DELETE_TIMER = config['deletetimer']
+PREFIX = Config.get("prefix")
+DELETE_TIMER = Config.get("deletetimer")
 
 
 class Fun(commands.Cog):
