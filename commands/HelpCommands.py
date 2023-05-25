@@ -3,7 +3,6 @@ import json
 from utils import Message, Config
 from discord.ext import commands
 
-PREFIX = Config.get("prefix")
 DELETE_TIMER = Config.get("deletetimer")
 
 
@@ -19,6 +18,7 @@ class Help(commands.Cog):
             for cog in self.bot.cogs:
                 if "Help" not in cog and "events" not in cog.lower():
                     category_docstring = self.bot.get_cog(cog).__doc__
+                    PREFIX = Config.get("prefix")
                     categories.append(f'[{PREFIX}{cog.lower()}] - {category_docstring}')
             categories_text = "\n".join(categories)
             output_text = Message.codeblock("Categories", categories_text)

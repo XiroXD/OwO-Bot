@@ -5,7 +5,6 @@ from utils import Message, Config
 from discord.ext import commands
 from utils import Api
 
-PREFIX = Config.get("prefix")
 DELETE_TIMER = Config.get("deletetimer")
 
 
@@ -34,6 +33,7 @@ class Nsfw(commands.Cog):
         cmds = []
         for command in self.bot.commands:
             if command.cog_name == "Nsfw" and command.name != "nsfw":
+                PREFIX = Config.get("prefix")
                 cmds.append(f"[{PREFIX}{command.name}] - {command.description}")
         if not cmds:
             await ctx.send("No nsfw commands available.", delete_after=DELETE_TIMER)

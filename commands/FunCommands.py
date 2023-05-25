@@ -8,7 +8,6 @@ from discord.ext import commands
 from io import BytesIO
 from utils import Api
 
-PREFIX = Config.get("prefix")
 DELETE_TIMER = Config.get("deletetimer")
 
 
@@ -67,6 +66,7 @@ class Fun(commands.Cog):
         cmds = []
         for command in self.bot.commands:
             if command.cog_name == "Fun" and command.name != "fun":
+                PREFIX = Config.get("prefix")
                 cmds.append(f"[{PREFIX}{command.name}] - {command.description}")
         if not cmds:
             await ctx.send("No fun commands available.", delete_after=DELETE_TIMER)

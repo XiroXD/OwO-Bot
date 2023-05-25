@@ -5,7 +5,6 @@ import json
 from utils import Message, Config
 from discord.ext import commands
 
-PREFIX = Config.get("prefix")
 DELETE_TIMER = Config.get("deletetimer")
 
 
@@ -31,6 +30,7 @@ class Utils(commands.Cog):
         cmds = []
         for command in self.bot.commands:
             if command.cog_name == "Utils" and command.name != "utils":
+                PREFIX = Config.get("prefix")
                 cmds.append(f"[{PREFIX}{command.name}] - {command.description}")
         if not cmds:
             await ctx.send("No fun commands available.", delete_after=DELETE_TIMER)

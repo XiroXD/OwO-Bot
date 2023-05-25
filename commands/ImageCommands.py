@@ -6,8 +6,6 @@ from utils import Message, Api, Config
 from discord.ext import commands
 from io import BytesIO
 
-
-PREFIX = Config.get("prefix")
 DELETE_TIMER = Config.get("deletetimer")
 
 
@@ -45,6 +43,7 @@ class Image(commands.Cog):
         cmds = []
         for command in self.bot.commands:
             if command.cog_name == "Image" and command.name != "image":
+                PREFIX = Config.get("prefix")
                 cmds.append(f"[{PREFIX}{command.name}] - {command.description}")
         if not cmds:
             await ctx.send("No fun commands available.", delete_after=DELETE_TIMER)
