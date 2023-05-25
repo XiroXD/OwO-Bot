@@ -31,7 +31,7 @@ def codeblock(title: str, text: str):
 
     return f"""
 ```ini
-[OwO Bot {version}]
+[OwO Bot] {version}
 ```
 ```ini
 [{title}]
@@ -51,7 +51,7 @@ def paginated_codeblock(title: str, text: str, page: int, num_pages: int):
 
     return f"""
 ```ini
-[OwO Bot {version}]
+[OwO Bot] {version}
 ```
 ```ini
 {text}
