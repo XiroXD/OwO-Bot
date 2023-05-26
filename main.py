@@ -90,14 +90,17 @@ async def on_command_error(ctx, error):
 
 
 async def load():
+    debug = Config.get("development")['debug']
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
             await OwO.load_extension(f'commands.{filename[:-3]}')
-            print(f'{Back.BLUE}{Fore.BLACK}[Commands]{Back.RESET} {Fore.WHITE}Loaded {filename}')
+            if debug:
+                print(f'{Back.BLUE}{Fore.BLACK}[Commands]{Back.RESET} {Fore.WHITE}Loaded {filename}')
     for filename in os.listdir('./events'):
         if filename.endswith('.py'):
             await OwO.load_extension(f'events.{filename[:-3]}')
-            print(f'{Back.YELLOW}{Fore.BLACK}[Events]{Back.RESET} {Fore.WHITE}Loaded {filename}')
+            if debug:
+                print(f'{Back.YELLOW}{Fore.BLACK}[Events]{Back.RESET} {Fore.WHITE}Loaded {filename}')
 
 
 async def main():

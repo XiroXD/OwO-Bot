@@ -74,8 +74,8 @@ def error(message: str):
 
 {message} 
 ```
-    """
-
+""" 
+    
 
 # Source: https://github.com/Makiyu-py/humor_langs/blob/master/humor_langs/main_trans.py#LL6C1-L6C1
 def owofy(text: Sequence, *, wanky: bool = False, _print: bool = False):

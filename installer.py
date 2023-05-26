@@ -19,6 +19,9 @@ files = {
         "token": f"{token}",
         "deletetimer": 12,
         "owofied": False,
+        "development": {
+            "debug": False
+        }
     },
     "config/notifications/toasts.json": {"dmlogger": True},
     "config/notifications/webhooks.json": {"title": "OwO Bot", "color": "#ff00d0", "dmlogger": ""},
