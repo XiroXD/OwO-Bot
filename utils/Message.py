@@ -67,9 +67,12 @@ OwO Bot - Made by Xiro#0001 | Prefix: {prefix} | Build: {build}
 def error(message: str):
     return f"""
 ```ini
-[OwO Bot]
+[OwO Bot] {version}
+```
+```ini
+[Error] 
 
-[Error] {message} 
+{message} 
 ```
     """
 
@@ -104,6 +107,7 @@ def owofy(text: Sequence, *, wanky: bool = False, _print: bool = False):
             "mmm~ uwu ",
             "Oh... Hi there {} ".format(random.choice(["·///·", "(。O⁄ ⁄ω⁄ ⁄ O。)"])),
         ]  # I need a life, help me
+           # Me too - Xiro 2023
 
         subs = {
             "why": "wai",
