@@ -12,7 +12,7 @@ def nekobot_image_api(endpoint):
     return r["message"]
 
 
-def some_random_api(category: str, endpoint: str, args: str = None, image: bool = False, field: str = None,):
+def some_random_api(category: str, endpoint: str, args: str = None, image: bool = False, field: str = None):
     print(f"https://some-random-api.com/{category}/{endpoint}?{args}")
     r = requests.get(f"https://some-random-api.com/{category}/{endpoint}?{args}").content
     if image:

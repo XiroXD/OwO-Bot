@@ -1,3 +1,4 @@
+import requests
 import discord
 import math
 import json
@@ -16,6 +17,13 @@ class Image(commands.Cog):
         self.bot = bot
 
     # /// COMMANDS \\\
+    @commands.command(name="fox", usage="fox", description="Sends a random fox image")
+    async def fox(self, ctx):
+        await ctx.message.delete()
+        link = Api.some_random_api("img", "fox", field="link")
+        fox = BytesIO(requests.get(link, stream=True).content)
+        await ctx.send(file=discord.File(fox, filename="foxie.png"))
+            
     @commands.command(name="horny", usage="horny <@user/id>", description="Give someone a license to be horny")
     async def horny(self, ctx, user: discord.Member):
         await ctx.message.delete()
