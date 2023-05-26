@@ -35,6 +35,7 @@ lost_connection = False
 async def on_ready():
     global lost_connection
     lost_connection = False
+    Log.print_banner()
     Toast.send('Selfbot', 'Successfully connected to Discord gateway')
 
     count = sum(1 for _ in OwO.commands)
