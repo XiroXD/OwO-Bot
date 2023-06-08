@@ -5,7 +5,6 @@ import math
 
 from utils import Message, Config
 from discord.ext import commands
-from io import BytesIO
 from utils import Api
 
 DELETE_TIMER = Config.get("deletetimer")
@@ -36,7 +35,7 @@ class Fun(commands.Cog):
             size = random.randint(0, 20)
 
         if size == 0:
-            pp = "Couldn't measure dick size.. maybe it's to small or doesn't exist?"
+            pp = "Couldn't measure dick size.. maybe it's too small or doesn't exist?"
         else:
             pp = "8"+"="*size+"D"
         await ctx.send(Message.codeblock(f"{user}'s dick size", pp), delete_after=DELETE_TIMER)
