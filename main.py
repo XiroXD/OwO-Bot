@@ -4,13 +4,13 @@ import asyncio
 import json
 import os
 
-from utils import Message, Log, Api, Toast, Config
+from utils import Message, Log, Api, Toast, Config, Console
 from discord.ext import commands
 from colorama import Fore, Back
 
 
 colorama.init(autoreset=True)
-os.system('cls' if os.name == 'nt' else 'clear')
+Console.clear()
 
 try:
     TOKEN = Config.get("token")
@@ -35,11 +35,12 @@ lost_connection = False
 async def on_ready():
     global lost_connection
     lost_connection = False
-    Log.print_banner()
     Toast.send('Selfbot', 'Successfully connected to Discord gateway')
+    
+    Log.print_banner()
+    width = Console.get_width()
 
-    count = sum(1 for _ in OwO.commands)
-    Log.info(f'Loaded {count} commands')
+    print(Fore.WHITE + f"Prefix: {OwO.command_prefix} | User: {OwO.user} | Servers: {len(OwO.guilds)}".center(width))
 
     Log.custom_info('[Selfbot]', 'Successfully connected to Discord gateway')
     Log.custom_info('[Selfbot]', f'Logged in as {OwO.user}')
@@ -49,6 +50,7 @@ async def on_ready():
     parsed = json.loads(r)
     if not os.path.exists("./data/version.json"):
         Api.get_version()
+        
     else:
         with open("./data/version.json") as f:
             version = json.load(f)

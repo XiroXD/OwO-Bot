@@ -1,4 +1,8 @@
+import os
+
 from colorama import Fore, Back, Style
+
+from utils.Console import clear
 
 
 def warn(text):
@@ -21,6 +25,7 @@ def custom_info(prefix, text):
     return print(f'{Back.CYAN}{Fore.BLACK}{prefix}{Back.RESET} {Fore.BLUE}{text}')
 
 def print_banner():
+    clear()
     banner = """
   _____         _____     ______             
  / ___ \       / ___ \   (____  \       _    
@@ -31,4 +36,7 @@ def print_banner():
                                              
 """
 
-    print(Fore.BLUE + Style.BRIGHT + banner)
+    width = os.get_terminal_size().columns
+    banner = banner.splitlines()
+    banner = '\n'.join([line.center(width) for line in banner])
+    print(Fore.MAGENTA + Style.BRIGHT + banner)
