@@ -31,6 +31,13 @@ class Image(commands.Cog):
         link = Api.some_random_api("img", "cat", field="link")
         cat = BytesIO(requests.get(link, stream=True).content)
         await ctx.send(file=discord.File(cat, filename="gato.png"))
+        
+    @commands.command(name="redpanda", usage="redpanda", description="Sends a random red panda image")
+    async def redpanda(self, ctx):
+        await ctx.message.delete()
+        link = Api.some_random_api("img", "red_panda", field="link")
+        panda = BytesIO(requests.get(link, stream=True).content)
+        await ctx.send(file=discord.File(panda, filename="panda.png"))
             
     @commands.command(name="horny", usage="horny <@user/id>", description="Give someone a license to be horny")
     async def horny(self, ctx, user: discord.Member):
