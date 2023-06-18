@@ -57,6 +57,12 @@ class Fun(commands.Cog):
         await ctx.message.delete()
         joke = Api.some_random_api("others", "joke", "joke")
         await ctx.send(Message.codeblock("Joke", joke), delete_after=DELETE_TIMER)
+        
+    @commands.command(name="dice", usage="dice", description="Rolls the dice...")
+    async def dice(self, ctx):
+        await ctx.message.delete()
+        number = random.randint(1, 6)
+        await ctx.send(Message.codeblock("Roll the dice", f"The rolled number is {number}"), delete_after=DELETE_TIMER)
 
     # /// HELP \\\
     @commands.command(name="fun", usage="fun", description="Shows all the fun commands")
