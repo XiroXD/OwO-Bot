@@ -39,7 +39,7 @@ def codeblock(title: str, text: str):
 {text}
 ```
 ```
-OwO Bot - Made by @owofied | Prefix: {prefix} | Build: {build}
+OwO Bot - Made by @owofied | Prefix: {prefix}
 ```
 """
 
@@ -59,7 +59,7 @@ def paginated_codeblock(title: str, text: str, page: int, num_pages: int):
 [{title} (page {page}/{num_pages})]
 ```
 ```
-OwO Bot - Made by @owofied | Prefix: {prefix} | Build: {build}
+OwO Bot - Made by @owofied | Prefix: {prefix}
 ```
 """
 
