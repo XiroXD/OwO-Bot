@@ -1,6 +1,7 @@
 import colorama
 import requests
 import asyncio
+import semver
 import json
 import os
 
@@ -45,20 +46,6 @@ async def on_ready():
     Log.custom_info('[Selfbot]', 'Successfully connected to Discord gateway')
     Log.custom_info('[Selfbot]', f'Logged in as {OwO.user}')
 
-    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
-    r = requests.get(url).content
-    parsed = json.loads(r)
-    if not os.path.exists("./data/version.json"):
-        Api.get_version()
-        
-    else:
-        with open("./data/version.json") as f:
-            version = json.load(f)
-            if version['version'] != parsed['version'] or version['build'] != parsed['build']:
-                Api.get_version()
-                Toast.send('Selfbot', f'New version available: {parsed["version"]}, {parsed["build"]}')
-                Log.warn(f'New version available: {parsed["version"]}')
-
 
 @OwO.event
 async def on_disconnect():
@@ -89,10 +76,30 @@ async def on_command_error(ctx, error):
         await ctx.send(Message.error("Command not found"), delete_after=DELETE_TIMER)
     else:
         await ctx.message.delete()
-        await ctx.send(Message.error(error), delete_after=DELETE_TIMER)
+       
 
+async def update_check():
+    Log.info("Checking for updates")
+    url = "https://raw.githubusercontent.com/XiroXD/OwO-Bot/master/version.json"
+    r = requests.get(url).content
+    parsed = json.loads(r)
+    if not os.path.exists("./data/version.json"):
+        Api.get_version()
+        
+    else:
+        with open("./data/version.json") as f:
+            version = json.load(f)
+            compare = semver.compare(version['version'], parsed['version'])
+            if compare == -1:
+                Api.get_version()
+                Toast.send('Selfbot', f'New version available: {parsed["version"]}')
+                Log.warn(f'New version available: {parsed["version"]}')
+                exit(0)
+            else: 
+                Log.info("You're using the latest version!")
 
 async def load():
+    await update_check()
     debug = Config.get("development")['debug']
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
